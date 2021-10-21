@@ -1,0 +1,60 @@
+<h3>Product List</h3>
+<!--<div *ngFor="let product of product"></div>
+<div class="card" style="width: 50rem;">
+    <div class="card-body">
+        <a href="#" class="badge badge-primary">Product Name :{{product.title | uppercase}}</a>
+        <p class="card-title">Type: {{product.type | lowercase}}</p>
+        <p class="card-text">Description: {{product.description | lowercase}}.</p>
+        <p class="card-text">Price: {{product.price | currency : 'EUR'}}.</p>
+        <p class="card-text">Rating: {{product.rating | number }}</p> -->
+       <!---- <p class="card-text">Rating * 500 : {{product.rating | multiplier:'500'}}.</p>
+        <p class="card-text">Launch Date: {{product.launchDate | date : 'shortDate'}}.</p>
+        <p class="card-text">Launch Date: {{product.launchDate | date : 'longDate'}}.</p>
+        <p class="card-text">Launch Date: {{product.launchDate | date : 'MM/dd/yyyy : HH:mm:ss'}}.</p>
+        <p class="card-text">Product: {{product | json}}.</p>
+        <p class="card-text">{{(show) ? product.para : product.para | summary: 10}} <a class="link" (click)="showMore()">{{show ? 'Show Less' : 'Show More'}}</a></p>--->
+       <!-- <a href="#" class="btn btn-primary">Add to cart</a>
+    </div>
+</div>-->
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <!--<th scope="col">#</th>-->
+            <th scope="col">Product Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Rating</th>
+            <!--<a href="#" class="btn btn-primary">Add to cart</a>
+            <button type="button" class="btn btn-success" [routerLink]="[ '/create']">Cart</button>-->
+        </tr>
+    </thead>
+    <tbody *ngIf="products.length>0; then listproducts else noproducts">
+
+    </tbody>
+    <ng-template #listproducts>
+        <tr *ngFor="let p of products">
+           <!-- <th scope="row">{{p.id}}</th>-->
+            <td>{{p.name}}</td>
+            <td>{{p.type}}</td>
+            <td>{{p.description}}</td>
+            <td>{{p.price}}</td>
+            <td>{{p.rating}}</td>
+            <button type="button" class="btn btn-success" [routerLink]="[ '/create']">Add To Cart</button>
+            <td><a href="#" [class]="p.active ? 'badge badge-success' : 'badge badge-danger'">{{p.active}}</a> </td>
+            <td><a href="#" class="badge badge-info">{{p.brand}}</a> </td>
+        </tr>
+    </ng-template>
+
+    <ng-template #noproducts>
+        <tbody>
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </tbody>
+    </ng-template>
+
+</table>
